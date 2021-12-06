@@ -1,0 +1,13 @@
+tasks:
+  - init: |
+      wget -q https://storage.googleapis.com/git-repo-downloads/repo
+      chmod a+x repo
+      sudo install repo /usr/local/bin/repo
+      git config --global user.name "dlwlrma123"
+      git config --global user.email "alexfinhart@gmail.com"
+      git config --global color.ui false 
+      repo init --depth=1 --no-repo-verify -u git://github.com/ProjectArcana/manifest.git -b S -g default,-mips,-darwin,-notdefault
+      git clone https://github.com/dlwlrma123/local_manifest.git --depth 1 -b SDM439 .repo/local_manifests
+      repo sync -c --no-clone-bundle --no-tags --optimized-fetch --prune --force-sync -j8
+    command: |
+     echo "finished syncing resources"
